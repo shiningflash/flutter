@@ -1,0 +1,32 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "demo_app",
+            "cwd": "demo_app",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "dicee-flutter",
+            "cwd": "dicee-flutter",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "hello_app",
+            "cwd": "hello_app",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "mi_card_flutter",
+            "cwd": "mi_card_flutter",
+            "request": "launch",
+            "type": "dart"
+        }
+    ]
+}
