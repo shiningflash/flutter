@@ -6,7 +6,7 @@ A new Flutter application.
 
 ## Which contains:
 
-- Data Table with selection ooportunity
+- Data Table with selection opportunity
 - Ascending and Descending sorting representation
 - Detete selected items from table
 
