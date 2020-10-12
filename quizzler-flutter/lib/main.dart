@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:quizzler/dialogs.dart';
+import 'quiz_brain.dart';
+
+QuizBrain quizBrain = QuizBrain();
 
 void main() => runApp(Quizzler());
 
@@ -27,28 +31,34 @@ class QuizPage extends StatefulWidget {
 
 class _QuizPageState extends State<QuizPage> {
   List<Icon> scoreKeeper = [];
+  int right = 0, wrong = 0;
 
-  List<String> questions = [
-    'Messi was born in Spain.',
-    'The ratio of our national flag is 10:6.',
-    'The sun rises in the east.'
-  ];
-
-  List<bool> answers = [false, true, false];
-
-  int questionNo = 0;
-
-  void checkResult(int questionNo, bool ans) {
-    bool correctAns = answers[questionNo];
-
-    if (correctAns == ans) {
-      print('You got it right!');
-    } else {
-      print('Ooops! you got it wrong!');
-    }
+  void checkAnswer(bool userPickedAns) {
+    bool correctAns = quizBrain.getCorrectAns();
 
     setState(() {
-      questionNo++;
+      if (correctAns == userPickedAns) {
+        scoreKeeper.add(Icon(
+          Icons.check,
+          color: Colors.green,
+        ));
+        right++;
+      } else {
+        scoreKeeper.add(Icon(
+          Icons.close,
+          color: Colors.red,
+        ));
+        wrong++;
+      }
+      int total = right + wrong;
+      bool flag = quizBrain.nextQuestion();
+      if (flag == false) {
+        if (right >= wrong) Dialogs.SuccessMessage(context, 'Great!', 'Your score is $right out of $total');
+        else Dialogs.FailureMessage(context, 'Ooops!', 'Your score is $right out of $total. You tried a lot, but better luck next time.');
+        quizBrain.startFromFirst();
+        right = 0; wrong = 0;
+        scoreKeeper = [];
+      }
     });
   }
 
@@ -64,7 +74,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                questions[questionNo],
+                quizBrain.getQuestionText(),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -88,7 +98,7 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                checkResult(questionNo, true);
+                checkAnswer(true);
               },
             ),
           ),
@@ -106,7 +116,7 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                checkResult(questionNo, false);
+                checkAnswer(false);
               },
             ),
           ),
