@@ -1,0 +1,4 @@
+#Fri Oct 09 21:16:53 BDT 2020
+base.0=/home/shiningflash/Documents/flutter/demo_app/build/app/intermediates/dex/debug/mergeDexDebug/out/classes.dex
+path.0=classes.dex
+renamed.0=classes.dex
