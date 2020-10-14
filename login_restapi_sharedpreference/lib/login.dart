@@ -1,6 +1,10 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'animation/FadeAnimation.dart';
 import 'package:flutter/services.dart';
+import 'homepage.dart';
+import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -8,6 +12,12 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+
+  bool _isLoading = false;
+
+  TextEditingController emailController = new TextEditingController();
+  TextEditingController passController = new TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
@@ -34,16 +44,17 @@ class _LoginPageState extends State<LoginPage> {
             height: MediaQuery.of(context).size.height - 50,
             width: double.infinity,
             child: Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  SizedBox(height: 10,),
-                  headerSection(),
-                  inputSection(),
-                  loginButtonHandler(),
-                  signupButtonHandler(),
-                  footerSection(),
-                ],
+              child: _isLoading ? Center(
+                child: CircularProgressIndicator()) : Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    SizedBox(height: 10,),
+                    headerSection(),
+                    inputSection(),
+                    loginButtonHandler(),
+                    signupButtonHandler(),
+                    footerSection(),
+                  ],
               ),
             ),
           ),
@@ -79,38 +90,102 @@ class _LoginPageState extends State<LoginPage> {
     return Column(
       children: <Widget>[
         SizedBox(height: 20,),
-        FadeAnimation(1.3, takeInput(label: "Email"),),
-        FadeAnimation(1.4, takeInput(label: "Password", obscureText: true),),
+        FadeAnimation(1.3, takeInput(),),
       ],
     );
   }
 
-  Column takeInput({label, obscureText = false}) {
+  Column takeInput() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Text(label, style: TextStyle(
+        Text("Email", style: TextStyle(
             fontSize: 15,
             fontWeight: FontWeight.w400,
             color: Colors.black87
-        ),
-        ),
-        SizedBox(height: 10,),
-        TextField(
-          obscureText: obscureText,
-          decoration: InputDecoration(
-              contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-              enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.grey[400]),
-              ),
-              border: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.grey[400]),
-              )
           ),
         ),
+        SizedBox(height: 10,),
+        emailTextField(),
+        SizedBox(height: 20,),
+        Text("Password", style: TextStyle(
+            fontSize: 15,
+            fontWeight: FontWeight.w400,
+            color: Colors.black87
+          ),
+        ),
+        SizedBox(height: 10,),
+        passTextField(),
         SizedBox(height: 20,),
       ],
     );
+  }
+
+  TextField emailTextField() {
+    return TextField(
+      controller: emailController,
+      obscureText: false,
+      decoration: InputDecoration(
+          contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.grey[400]),
+          ),
+          border: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.grey[400]),
+          )
+      ),
+    );
+  }
+
+  TextField passTextField() {
+    return TextField(
+      controller: passController,
+      obscureText: true,
+      decoration: InputDecoration(
+          contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.grey[400]),
+          ),
+          border: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.grey[400]),
+          )
+      ),
+    );
+  }
+
+  loggingIn(String email, String pass) async {
+    Map data = {
+      'email': email,
+      'pass': pass
+    };
+    var jsonData = null;
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    var response = await http.post("http://127.0.0.1:8080/login/", body: data);
+    if (response.statusCode == 200) {
+      jsonData = json.decode(response.body);
+      setState(() {
+        _isLoading = false;
+        sharedPreferences.setString('token', jsonData['token']);
+        Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(
+                builder: (BuildContext context) => HomePage()
+            ),
+            (Route<dynamic> route) => false
+        );
+      });
+    }
+    else {
+      print(response.body);
+    }
+    /*setState(() {
+      _isLoading = false;
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(
+              builder: (BuildContext context) => HomePage()
+          ),
+              (Route<dynamic> route) => false
+      );
+    });*/
   }
 
   Container loginButtonHandler() {
@@ -129,7 +204,12 @@ class _LoginPageState extends State<LoginPage> {
         child: MaterialButton(
           minWidth: double.infinity,
           height: 55,
-          onPressed: () {},
+          onPressed: () {
+            setState(() {
+              _isLoading = true;
+            });
+            loggingIn(emailController.text, passController.text);
+          },
           color: Colors.yellow[700],
           elevation: 0,
           shape: RoundedRectangleBorder(

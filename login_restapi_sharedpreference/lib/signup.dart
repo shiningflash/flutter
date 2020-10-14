@@ -2,12 +2,16 @@ import 'package:flutter/material.dart';
 import 'animation/FadeAnimation.dart';
 import 'package:flutter/services.dart';
 
-class LoginPage extends StatefulWidget {
+class SignupPage extends StatefulWidget {
   @override
-  _LoginPageState createState() => _LoginPageState();
+  _SignupPageState createState() => _SignupPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _SignupPageState extends State<SignupPage> {
+
+  TextEditingController emailController = new TextEditingController();
+  TextEditingController passController = new TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
@@ -40,13 +44,14 @@ class _LoginPageState extends State<LoginPage> {
                   SizedBox(height: 10,),
                   headerSection(),
                   inputSection(),
-                  loginButtonHandler(),
                   signupButtonHandler(),
+                  loginButtonHandler(),
                   footerSection(),
                 ],
               ),
             ),
           ),
+
         ),
       ),
     );
@@ -56,21 +61,16 @@ class _LoginPageState extends State<LoginPage> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
-        FadeAnimation(1.0,
-          Text("Login", style: TextStyle(
-            fontSize: 30,
-            fontWeight: FontWeight.bold,
-          ),
-          ),
+        FadeAnimation(1.0, Text("Sign Up", style: TextStyle(
+          fontSize: 30,
+          fontWeight: FontWeight.bold,
         ),
+        ),),
         SizedBox(height: 15,),
-        FadeAnimation(1.1,
-          Text("Log in to your account", style: TextStyle(
-              fontSize: 15,
-              color: Colors.grey[700]
-          ),
-          ),
-        ),
+        FadeAnimation(1.1, Text("Sign up for an account", style: TextStyle(
+            fontSize: 15,
+            color: Colors.grey[700]
+        ),),),
       ],
     );
   }
@@ -79,13 +79,14 @@ class _LoginPageState extends State<LoginPage> {
     return Column(
       children: <Widget>[
         SizedBox(height: 20,),
-        FadeAnimation(1.3, takeInput(label: "Email"),),
-        FadeAnimation(1.4, takeInput(label: "Password", obscureText: true),),
+        FadeAnimation(1.2, takeInput(label: "Email"),),
+        FadeAnimation(1.3, takeInput(label: "Password", obscureText: true),),
+        FadeAnimation(1.4, takeInput(label: "Confirm Password", obscureText: true),),
       ],
     );
   }
 
-  Column takeInput({label, obscureText = false}) {
+  Widget takeInput({label, obscureText = false}) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
@@ -113,9 +114,9 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Container loginButtonHandler() {
+  Container signupButtonHandler() {
     return Container(
-      child: FadeAnimation(1.5, Container(
+      child: FadeAnimation(1.6, Container(
         padding: EdgeInsets.only(top: 3, left: 3),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(30),
@@ -130,12 +131,12 @@ class _LoginPageState extends State<LoginPage> {
           minWidth: double.infinity,
           height: 55,
           onPressed: () {},
-          color: Colors.yellow[700],
+          color: Colors.lightBlue,
           elevation: 0,
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(30)
           ),
-          child: Text("Login",
+          child: Text("Signup",
             style: TextStyle(
                 fontWeight: FontWeight.w600,
                 fontSize: 18,
@@ -147,33 +148,28 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Container signupButtonHandler() {
-    return Container(
-      child: FadeAnimation(1.6, Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text("Don't have an account?  "),
-              Text("Sign up", style: TextStyle(
+  Column loginButtonHandler() {
+    return Column(
+      children: [
+        FadeAnimation(1.7, Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text("Have an account?  "),
+            Text("Login", style: TextStyle(
                 fontWeight: FontWeight.w600,
-                fontSize: 18,
-              ),
-              ),
-            ],
-          ),
-        ],
-      ),),
+                fontSize: 18
+            ),)
+          ],
+        ),),
+      ],
     );
   }
 
   Column footerSection() {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        //SizedBox(height: 55,),
-        FadeAnimation(1.7, Container(
-          height: MediaQuery.of(context).size.height / 5,
+        FadeAnimation(1.8, Container(
+          height: MediaQuery.of(context).size.height / 4,
           alignment: Alignment.bottomCenter,
           decoration: BoxDecoration(
               image: DecorationImage(

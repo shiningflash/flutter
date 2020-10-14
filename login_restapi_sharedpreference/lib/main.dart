@@ -1,20 +1,25 @@
 import 'animation/FadeAnimation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter/services.dart';
 import 'login.dart';
 import 'signup.dart';
 
 void main() {
   runApp(MaterialApp(
-    debugShowCheckedModeBanner: false,
-    home: MyApp(),
-  )
+      debugShowCheckedModeBanner: false,
+      home: MyApp(),
+    )
   );
 }
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      systemNavigationBarColor: Colors.transparent,
+    ));
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -28,7 +33,7 @@ class MyApp extends StatelessWidget {
                 headerSection(),
                 SizedBox(height: 10,),
                 FadeAnimation(1.2,
-                  logoSection(context),
+                    logoSection(context),
                 ),
                 SizedBox(height: 20,),
                 Column(
