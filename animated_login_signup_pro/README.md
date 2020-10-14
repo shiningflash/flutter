@@ -2,14 +2,11 @@ Animated Login and Signup page
 -------------------
 A new Flutter application.
 
-----------
 
 ## What's new?
 
-- Excellent UI
-- FadeAnimation
+- Excellent UI - FadeAnimation
 
-----------
 
 ## Preview
 
