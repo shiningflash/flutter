@@ -158,9 +158,16 @@ class _LoginPageState extends State<LoginPage> {
       'email': email,
       'pass': pass
     };
+    String dataString = json.encode(data);
+    Map<String, String> header = {
+      'Content-type': 'application/json'
+    };
+
+
     var jsonData = null;
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    var response = await http.post("http://127.0.0.1:8080/login/", body: data);
+    String url = "http://127.0.0.1:8080/login"; // your url here
+    var response = await http.post(url, body: dataString, headers: header);
     if (response.statusCode == 200) {
       jsonData = json.decode(response.body);
       setState(() {
@@ -173,6 +180,7 @@ class _LoginPageState extends State<LoginPage> {
             (Route<dynamic> route) => false
         );
       });
+      print(response.body);
     }
     else {
       print(response.body);
