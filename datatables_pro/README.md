@@ -4,7 +4,7 @@ A new Flutter application.
 
 --------------
 
-## Which contains:
+### Which contains:
 
 - Data Table with selection opportunity
 - Ascending and Descending sorting representation
@@ -12,14 +12,21 @@ A new Flutter application.
 
 -------------
 
-## Preview
+### Some Preview
 
-![Screenshot from 2020-10-13 01-56-26](https://user-images.githubusercontent.com/35567854/95785901-6f14f800-0cf8-11eb-8e6a-6998317ed827.png)
-
-![Screenshot from 2020-10-13 01-56-44](https://user-images.githubusercontent.com/35567854/95785914-73d9ac00-0cf8-11eb-8055-68e95aae067f.png)
-
-![Screenshot from 2020-10-13 01-56-49](https://user-images.githubusercontent.com/35567854/95785918-763c0600-0cf8-11eb-831e-25867b6224e1.png)
-
-![Screenshot from 2020-10-13 01-57-05](https://user-images.githubusercontent.com/35567854/95785922-7805c980-0cf8-11eb-9512-6e42d075a65c.png)
-
+<table>
+  <tr>
+    <td>Select Row</td>
+    <td>Delete Selected Row</td>
+    <td>Assending</td>
+    <td>Descending</td>
+  </tr>
+  <tr>
+    <td><img src="https://user-images.githubusercontent.com/35567854/96372489-e4fde100-1188-11eb-9739-f1f725b18ede.png" width=270 height=500></td>
+    <td><img src="https://user-images.githubusercontent.com/35567854/96372492-e8916800-1188-11eb-8bcd-b63ff9962bba.png" width=270 height=500></td>
+    <td><img src="https://user-images.githubusercontent.com/35567854/96372602-648bb000-1189-11eb-9ba8-710997d2f42f.png" width=270 height=500></td>
+    <td><img src="https://user-images.githubusercontent.com/35567854/96372610-69506400-1189-11eb-8d6c-6de6acfc05eb.png" width=270 height=500></td>
+  </tr>
+ </table>
+ 
 ------------
