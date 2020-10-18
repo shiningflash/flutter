@@ -4,7 +4,7 @@ import 'note_list.dart';
 class NoteModify extends StatelessWidget {
 
   final String noteId;
-  bool get isEditing => noteId == null;
+  bool get isEditing => noteId != null;
 
   NoteModify({this.noteId});
 
