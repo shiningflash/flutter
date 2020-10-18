@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:flutter/services.dart';
 import 'package:muhurtho/models/message.dart';
 import 'package:muhurtho/models/user.dart';
 
@@ -125,51 +126,42 @@ class _ChatScreenState extends State<ChatScreen> {
     final List<Message> messages = [
       Message(
         sender: widget.user,
-        time: '5:30 PM',
-        text: 'Hey, how\'s it going? Hey, how\'s it going? Hey, how\'s it going? Hey, how\'s it going?',
+        time: '5:33 PM',
+        text: 'Did you mean a joke?',
         isLiked: false,
         unread: true,
       ),
       Message(
         sender: currentUser,
-        time: '5:30 PM',
-        text: 'Hey, how\'s it going? Hey, how\'s it going? Hey, how\'s it going? Hey, how\'s it going?',
+        time: '5:33 PM',
+        text: 'Yesss, tell me something funny...',
         isLiked: false,
         unread: true,
       ),
       Message(
         sender: widget.user,
-        time: '5:30 PM',
-        text: 'Hey, how\'s it going?',
-        isLiked: true,
-        unread: true,
-      ),
-      Message(
-        sender: widget.user,
-        time: '5:30 PM',
-        text: 'Hey, how\'s it going? Hey, how\'s it going? Hey, how\'s it going? Hey, how\'s it going?',
-        isLiked: false,
-        unread: true,
-      ),
-      Message(
-        sender: currentUser,
-        time: '5:30 PM',
-        text: 'Hey, how\'s it going? Hey, how\'s it going? Hey, how\'s it going? Hey, how\'s it going?',
-        isLiked: false,
-        unread: true,
-      ),
-      Message(
-        sender: widget.user,
-        time: '5:30 PM',
-        text: 'Hey, how\'s it going?',
+        time: '5:31 PM',
+        text: 'Excellent! How can I help you? I can sing a good song specially for you. 😉 Or if you like to hear a story?',
         isLiked: true,
         unread: true,
       ),
       Message(
         sender: currentUser,
-        time: '5:30 PM',
-        text: 'Hey, how\'s it going?',
+        time: '5:31 PM',
+        text: 'So, how\'s it going?',
         isLiked: false,
+        unread: true,
+      ),
+      Message(
+        sender: currentUser,
+        time: '5:31 PM',
+        text: 'Thanks! You too. 😃',
+      ),
+      Message(
+        sender: widget.user,
+        time: '5:30 PM',
+        text: 'Yo! Good Morning...',
+        isLiked: true,
         unread: true,
       ),
       Message(
@@ -181,22 +173,36 @@ class _ChatScreenState extends State<ChatScreen> {
       ),
     ];
 
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      systemNavigationBarColor: Colors.transparent,
+    ));
+
     return Scaffold(
-      backgroundColor: Colors.grey[700],
+      backgroundColor: Colors.white,
       appBar:  AppBar(
-        backgroundColor: Colors.grey[700],
+        brightness: Brightness.light,
+        backgroundColor: Colors.white,
+        toolbarHeight: 65,
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(Icons.arrow_back_ios, size: 20, color: Colors.black,),
+        ),
         title: Text(widget.user.name,
           style: TextStyle(
             fontSize: 25.0,
             fontWeight: FontWeight.bold,
+            color: Colors.black,
           ),
         ),
-        elevation: 0.0,
+        elevation: 3.0,
         actions: <Widget>[
           IconButton(
               icon: Icon(Icons.more_horiz),
               iconSize: 30.0,
-              color: Colors.white,
+              color: Colors.black,
               onPressed: () {
 
               }),
@@ -211,15 +217,15 @@ class _ChatScreenState extends State<ChatScreen> {
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(30.0),
-                    topRight: Radius.circular(30.0),
+                    topLeft: Radius.circular(20.0),
+                    topRight: Radius.circular(20.0),
                   ),
                 ),
                 child: ClipRRect(
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(30.0),
-                    topRight: Radius.circular(30.0),
-                  ),
+                  /*borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(20.0),
+                    topRight: Radius.circular(20.0),
+                  ),*/
                   child: ListView.builder(
                     reverse: true,
                     padding: EdgeInsets.only(top: 15.0),
@@ -234,6 +240,7 @@ class _ChatScreenState extends State<ChatScreen> {
                 ),
               ),
             ),
+            SizedBox(height: 5,),
             _buildMessageComposer(),
           ],
         ),
