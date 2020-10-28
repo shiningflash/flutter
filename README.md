@@ -73,9 +73,9 @@ An upbuilding online chatbot using Deep Neural Network.
 <table>
   <tr>
     <td>Start Page</td>
-     <td>Login Page</td>
-     <td>Signup Page</td>
-     <td>Chat Screen</td>
+    <td>Login Page</td>
+    <td>Chat Screen</td>
+    <td>Signup Page</td>
   </tr>
   <tr>
     <td><img src="https://user-images.githubusercontent.com/35567854/96365148-5a08f080-1160-11eb-945b-723ead1639ef.png" width=290 height=500></td>
