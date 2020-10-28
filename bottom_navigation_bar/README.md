@@ -11,4 +11,3 @@
     <td><img src="https://user-images.githubusercontent.com/35567854/97428448-31db7780-1940-11eb-97c0-c84a58160ecf.png" width=270 height=500></td>
   </tr>
  </table>
- --------
