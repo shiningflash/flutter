@@ -76,7 +76,6 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         )
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
       bottomNavigationBar: BubbleBottomBar(
         opacity: 0.2,
         backgroundColor: Colors.white,
@@ -91,7 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
         onTap: changePage,
         items: <BubbleBottomBarItem>[
           BubbleBottomBarItem(
-              icon: Icon(Icons.dashboard, color: Colors.black54,),
+            icon: Icon(Icons.dashboard, color: Colors.black54,),
             backgroundColor: Colors.redAccent,
             activeIcon: Icon(Icons.dashboard, color: Colors.red,),
             title: Text('Home'),
@@ -116,6 +115,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ],
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
         tooltip: 'Increment',
