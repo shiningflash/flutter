@@ -1,6 +1,9 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:soft_ui/soft-buttons/active_button.dart';
-import 'package:soft_ui/soft-buttons/button.dart';
+import 'package:soft_ui/soft-widgets/soft-buttons/active_button.dart';
+import 'package:soft_ui/soft-widgets/soft-buttons/button.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/services.dart';
 
 void main() {
   runApp(MyApp());
@@ -21,7 +24,7 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
 
   bool buttonPressed1 = false;
   bool buttonPressed2 = false;
@@ -66,15 +69,27 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        systemNavigationBarColor: Colors.transparent
+      )
+    );
     return Scaffold(
+      drawer: Drawer(),
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
-        backgroundColor: Colors.grey[800],
-        title: Text("Soft UI Design"),
-        leading: Icon(Icons.menu),
+        backgroundColor: Colors.grey[100],
+        title: Row(
+          children: [
+            Text("Soft", style: TextStyle(color: Colors.redAccent[700], fontWeight: FontWeight.bold),),
+            Text(" UI Design", style: TextStyle(color: Colors.grey[700], fontWeight: FontWeight.bold),),
+          ],
+        ),
+        leading: Icon(Icons.menu, color: Colors.grey[800], size: 27,),
         actions: [
-          Padding(padding: EdgeInsets.symmetric(horizontal: 5), child: Icon(Icons.search),),
-          Padding(padding: EdgeInsets.symmetric(horizontal: 10), child: Icon(Icons.more_vert),),
+          Padding(padding: EdgeInsets.symmetric(horizontal: 5), child: Icon(Icons.search, color: Colors.grey[800], size: 28,),),
+          Padding(padding: EdgeInsets.symmetric(horizontal: 10), child: Icon(Icons.more_vert, color: Colors.grey[800], size: 28,),),
         ],
       ),
       body: Center(
