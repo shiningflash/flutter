@@ -17,7 +17,7 @@ Flutter
   </tr>
  </table>
  
- --------
+ -------
  
 ### [Bottom Navigation Bar](https://github.com/shiningflash/flutter/tree/main/bottom_navigation_bar) Preview
 
