@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:sticky_note_app_using_rest_api/model/note.dart';
+import 'package:sticky_note_app_using_rest_api/services/notes_service.dart';
 import 'package:sticky_note_app_using_rest_api/views/note_delete.dart';
 import 'package:sticky_note_app_using_rest_api/views/note_modify.dart';
 
@@ -14,35 +16,18 @@ class NoteList extends StatefulWidget {
 
 class _NoteList extends State<NoteList> {
 
-  final notes = [
-    new Note(
-      noteId: "1",
-      createDateTime: DateTime.now(),
-      latestEditDateTime: DateTime.now(),
-      noteTitle: "This is note 1."
-    ),
-    new Note(
-        noteId: "2",
-        createDateTime: DateTime.now(),
-        latestEditDateTime: DateTime.now(),
-        noteTitle: "This is note 2."
-    ),
-    new Note(
-        noteId: "3",
-        createDateTime: DateTime.now(),
-        latestEditDateTime: DateTime.now(),
-        noteTitle: "This is note 4."
-    ),
-    new Note(
-        noteId: "4",
-        createDateTime: DateTime.now(),
-        latestEditDateTime: DateTime.now(),
-        noteTitle: "This is note 4."
-    ),
-  ];
+  NotesService get service => GetIt.instance<NotesService>();
+
+  List<Note> notes = [];
 
   String formatDateTime(DateTime dateTime) {
     return '${dateTime.day}/${dateTime.month}/${dateTime.year}';
+  }
+
+  @override
+  void initState() {
+    notes = service.getNoteList();
+    super.initState();
   }
 
   @override

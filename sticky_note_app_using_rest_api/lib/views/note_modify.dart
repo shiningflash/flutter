@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'note_list.dart';
 
 class NoteModify extends StatelessWidget {
 
