@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "791095276848",
+    "project_id": "data-collection-app-ab22c",
+    "storage_bucket": "data-collection-app-ab22c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:791095276848:android:8628fd2ca095602d1084f5",
+        "android_client_info": {
+          "package_name": "com.shiningflash.data_collection_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "791095276848-edtlip4brufnq9jk1idrlcjmgssdojda.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB8hfs9XFDWCbmdBJzZOHm4t7i7FoYIvhw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "791095276848-edtlip4brufnq9jk1idrlcjmgssdojda.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
